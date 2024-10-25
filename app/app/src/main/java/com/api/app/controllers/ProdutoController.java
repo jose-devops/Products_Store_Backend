@@ -49,7 +49,10 @@ public class ProdutoController {
     }
 
     @PostMapping("/editar")
-    public ResponseEntity<Object>editProdut(@RequestBody ProdutoModel produtoModel){
+    public ResponseEntity<Object>editProdut(@RequestBody @Valid ProdutoDTO produtoDTO){
+
+        var produtoModel =  new ProdutoModel();
+        BeanUtils.copyProperties(produtoDTO, produtoModel);
 
         //buscar um ProdutoModel no serviço pelo ID recebido
         Optional<ProdutoModel>produtoModelOptional = produtoService.findById(produtoModel.getId());

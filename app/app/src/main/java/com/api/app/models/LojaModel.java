@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -27,6 +28,10 @@ public class LojaModel implements Serializable {
 
     @Column(nullable = false)
     private String telefone;
+
+    @OneToMany(mappedBy = "lojaModel" , cascade = CascadeType.ALL)
+    private List<ProdutoModel> produtos;
+
 
 
 
